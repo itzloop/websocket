@@ -18,7 +18,7 @@
 
   <script>
 
-    let socket = new WebSocket("ws://localhost:8080/chat");
+    let socket = new WebSocket(`ws://${window.location.host}/chat`);
 
     // send message from the form
     document.forms.publish.onsubmit = function() {
