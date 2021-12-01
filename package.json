@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf build && tsc",
+    "start": "yarn build && node ./build/app.js",
+    "start:dev": "ts-node-dev src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "finalhandler": "^1.1.2",
+    "serve-static": "^1.14.1",
+    "ws": "^8.3.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "@types/finalhandler": "^1.1.1",
+    "@types/serve-static": "^1.13.10",
+    "@types/ws": "^8.2.1",
+    "typescript": "^4.5.2"
+  }
+}

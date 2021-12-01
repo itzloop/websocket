@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chat App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="chat example with websocket" />
+</head>
+<body>
+  <!-- message form -->
+  <form name="publish">
+    <input type="text" name="message">
+    <input type="submit" value="Send">
+  </form>
+
+  <!-- div with messages -->
+  <div id="messages"></div>
+
+  <script>
+
+    let socket = new WebSocket("ws://localhost:8080/chat");
+
+    // send message from the form
+    document.forms.publish.onsubmit = function() {
+      let outgoingMessage = this.message.value;
+
+      socket.send(outgoingMessage);
+      return false;
+    };
+
+    // message received - show the message in div#messages
+    socket.onmessage = function(event) {
+      event.data.text()
+        .then(text => {
+          let messageElem = document.createElement('div');
+          messageElem.textContent = text;
+          document.getElementById('messages').prepend(messageElem);
+        })
+        .catch(err => console.log(err));
+    }
+  </script>
+</body>
+</html>
